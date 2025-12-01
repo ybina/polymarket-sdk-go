@@ -414,7 +414,7 @@ func (c *ClobClient) GetTrades(params *types.TradeParams, onlyFirstPage bool, ne
 
 	queryParams := url.Values{}
 	if nextCursor == "" {
-		nextCursor = "0"
+		nextCursor = types.INITIAL_CURSOR
 	}
 	queryParams.Add("next_cursor", nextCursor)
 
