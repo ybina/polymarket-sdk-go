@@ -9,8 +9,8 @@ import (
 	"net/url"
 	"time"
 
-	"github.com/lixvyang/polymarket-sdk-go/auth"
-	"github.com/lixvyang/polymarket-sdk-go/types"
+	"github.com/ybina/polymarket-sdk-go/auth"
+	"github.com/ybina/polymarket-sdk-go/types"
 )
 
 // ClobClient represents a Polymarket CLOB client

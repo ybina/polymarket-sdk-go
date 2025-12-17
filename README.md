@@ -1,2 +1,4 @@
 # polymarket-sdk-go
-Golang sdk for polymarket.com
+Enhanced Golang sdk for polymarket.com
+Fork form github.com/LixvYang/polymarket-sdk-go
+

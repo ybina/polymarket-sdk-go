@@ -5,7 +5,7 @@ import (
 	"log"
 	"time"
 
-	"github.com/lixvyang/polymarket-sdk-go/gamma"
+	"github.com/ybina/polymarket-sdk-go/gamma"
 )
 
 // collectAllActiveEvents collects all active events using pagination

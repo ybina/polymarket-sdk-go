@@ -5,8 +5,8 @@ import (
 	"log"
 	"time"
 
-	"github.com/lixvyang/polymarket-sdk-go/client"
-	"github.com/lixvyang/polymarket-sdk-go/types"
+	"github.com/ybina/polymarket-sdk-go/client"
+	"github.com/ybina/polymarket-sdk-go/types"
 )
 
 func main() {

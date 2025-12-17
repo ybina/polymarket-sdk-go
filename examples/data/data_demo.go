@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/lixvyang/polymarket-sdk-go/data"
+	"github.com/ybina/polymarket-sdk-go/data"
 )
 
 func main() {

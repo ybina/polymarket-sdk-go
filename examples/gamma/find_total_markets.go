@@ -6,7 +6,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/lixvyang/polymarket-sdk-go/gamma"
+	"github.com/ybina/polymarket-sdk-go/gamma"
 )
 
 // BatchResult represents the result of a batch query

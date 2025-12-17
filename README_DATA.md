@@ -14,7 +14,7 @@ A fully typed Go client for the Polymarket Data API (`https://data-api.polymarke
 ## Installation
 
 ```bash
-go get github.com/lixvyang/polymarket-sdk-go
+go get github.com/ybina/polymarket-sdk-go
 ```
 
 ## Quick Start
@@ -26,7 +26,7 @@ import (
     "fmt"
     "log"
 
-    "github.com/lixvyang/polymarket-sdk-go/data"
+    "github.com/ybina/polymarket-sdk-go/data"
 )
 
 func main() {

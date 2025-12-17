@@ -8,7 +8,7 @@ import (
 
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/ethereum/go-ethereum/crypto"
-	"github.com/lixvyang/polymarket-sdk-go/types"
+	"github.com/ybina/polymarket-sdk-go/types"
 )
 
 // CreateL1Headers creates Level 1 authentication headers for API key creation

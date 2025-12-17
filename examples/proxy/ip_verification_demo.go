@@ -9,7 +9,7 @@ import (
 	"net/url"
 	"time"
 
-	"github.com/lixvyang/polymarket-sdk-go/gamma"
+	"github.com/ybina/polymarket-sdk-go/gamma"
 )
 
 // IPResponse represents the response from IP detection services

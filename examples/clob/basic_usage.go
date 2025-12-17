@@ -7,9 +7,9 @@ import (
 	"time"
 
 	"github.com/joho/godotenv"
-	"github.com/lixvyang/polymarket-sdk-go/auth"
-	"github.com/lixvyang/polymarket-sdk-go/client"
-	"github.com/lixvyang/polymarket-sdk-go/types"
+	"github.com/ybina/polymarket-sdk-go/auth"
+	"github.com/ybina/polymarket-sdk-go/client"
+	"github.com/ybina/polymarket-sdk-go/types"
 )
 
 func main() {

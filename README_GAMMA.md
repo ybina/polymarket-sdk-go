@@ -16,7 +16,7 @@ A comprehensive Go implementation of the Polymarket Gamma API SDK, providing typ
 ## Installation
 
 ```bash
-go get github.com/lixvyang/polymarket-sdk-go/gamma
+go get github.com/ybina/polymarket-sdk-go/gamma
 ```
 
 ## Quick Start
@@ -28,7 +28,7 @@ import (
     "fmt"
     "log"
 
-    "github.com/lixvyang/polymarket-sdk-go/gamma"
+    "github.com/ybina/polymarket-sdk-go/gamma"
 )
 
 func main() {

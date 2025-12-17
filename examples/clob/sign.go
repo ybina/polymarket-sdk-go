@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/lixvyang/polymarket-sdk-go/auth"
+	"github.com/ybina/polymarket-sdk-go/auth"
 )
 
 func main() {

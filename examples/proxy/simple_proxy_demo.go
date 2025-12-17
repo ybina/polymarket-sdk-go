@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/lixvyang/polymarket-sdk-go/gamma"
+	"github.com/ybina/polymarket-sdk-go/gamma"
 )
 
 func main() {

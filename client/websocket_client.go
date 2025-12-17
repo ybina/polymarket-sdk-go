@@ -8,7 +8,7 @@ import (
 	"time"
 
 	"github.com/gorilla/websocket"
-	"github.com/lixvyang/polymarket-sdk-go/types"
+	"github.com/ybina/polymarket-sdk-go/types"
 )
 
 const (
