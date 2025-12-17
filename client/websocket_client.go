@@ -4,6 +4,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
+	"net/http"
+	"net/url"
 	"sync"
 	"time"
 
@@ -38,6 +40,8 @@ type WebSocketClientOptions struct {
 
 	// Custom logger (if nil, uses default log.Logger)
 	Logger *log.Logger
+
+	ProxyUrl *string
 }
 
 // MessageHandler is a callback function for handling messages
@@ -143,6 +147,13 @@ func (ws *WebSocketClient) Connect() error {
 	// Create WebSocket connection
 	fullURL := fmt.Sprintf("%s/ws/market", wsURL)
 	dialer := websocket.Dialer{}
+	if ws.options.ProxyUrl != nil && *ws.options.ProxyUrl != "" {
+		proxyUrl, err := url.Parse(*ws.options.ProxyUrl)
+		if err != nil {
+			return fmt.Errorf("failed to parse proxy url: %w", err)
+		}
+		dialer.Proxy = http.ProxyURL(proxyUrl)
+	}
 	conn, _, err := dialer.Dial(fullURL, nil)
 	if err != nil {
 		ws.mu.Lock()
