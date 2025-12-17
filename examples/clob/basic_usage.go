@@ -141,6 +141,13 @@ func main() {
 		if err != nil {
 			log.Printf("Failed to create API key: %v", err)
 			fmt.Println("Note: This might fail if you already have an API key")
+			log.Printf("Start derive API creds ... \n")
+			apiCreds, err = clobClient.DeriveApiKey(nil)
+			if err != nil {
+				log.Printf("Failed to derive API creds: %v", err)
+			}
+			log.Printf("derive API creds: %v\n", apiCreds)
+			config.APIKey = apiCreds
 		} else {
 			fmt.Printf("API Key created successfully:\n")
 			fmt.Printf("  Key: %s\n", apiKey.Key)
@@ -149,12 +156,12 @@ func main() {
 			// Update client configuration with new API key
 			apiCreds = apiKey
 			config.APIKey = apiCreds
+		}
 
-			// Recreate client with API key
-			clobClient, err = client.NewClobClient(config)
-			if err != nil {
-				log.Fatalf("Failed to recreate client with API key: %v", err)
-			}
+		// Recreate client with API key
+		clobClient, err = client.NewClobClient(config)
+		if err != nil {
+			log.Fatalf("Failed to recreate client with API key: %v", err)
 		}
 
 		// If we have API credentials, test authenticated endpoints
