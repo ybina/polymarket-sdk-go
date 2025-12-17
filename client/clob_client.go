@@ -35,6 +35,16 @@ type ClientConfig struct {
 	GeoBlockToken string
 	UseServerTime bool
 	Timeout       time.Duration
+	ProxyUrl      *string
+}
+
+// ProxyConfig represents HTTP/HTTPS proxy configuration
+type ProxyConfig struct {
+	Host     string  `json:"host"`               // Proxy server hostname or IP address
+	Port     int     `json:"port"`               // Proxy server port number
+	Username *string `json:"username,omitempty"` // Proxy authentication username
+	Password *string `json:"password,omitempty"` // Proxy authentication password
+	Protocol *string `json:"protocol,omitempty"` // Proxy protocol (http or https)
 }
 
 // NewClobClient creates a new CLOB client
@@ -73,6 +83,15 @@ func NewClobClient(config *ClientConfig) (*ClobClient, error) {
 		httpClient: &http.Client{
 			Timeout: timeout,
 		},
+	}
+	if config.ProxyUrl != nil {
+		proxyUrl, err := url.Parse(*config.ProxyUrl)
+		if err != nil {
+			return nil, fmt.Errorf("failed to parse proxy url: %w", err)
+		}
+		client.httpClient.Transport = &http.Transport{
+			Proxy: http.ProxyURL(proxyUrl),
+		}
 	}
 
 	return client, nil
