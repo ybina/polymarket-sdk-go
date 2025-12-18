@@ -45,6 +45,8 @@ func main() {
 	if privateKey == "" {
 		log.Fatal("POLYMARKET_KEY environment variable is required")
 	}
+	// set local proxy if needed
+	//proxyUrl := "http://127.0.0.1:7890"
 
 	// Create CLOB client
 	config := &client.ClientConfig{
@@ -53,6 +55,7 @@ func main() {
 		PrivateKey:    privateKey,
 		UseServerTime: true,
 		Timeout:       30 * time.Second,
+		//ProxyUrl: proxyUrl,
 	}
 
 	clobClient, err := client.NewClobClient(config)
@@ -69,6 +72,7 @@ func main() {
 		ReconnectDelay:       5 * time.Second,
 		MaxReconnectAttempts: 10,
 		Debug:                true,
+		//ProxyUrl:             proxyUrl,
 	})
 
 	// Register event handlers
