@@ -2,3 +2,7 @@
 Enhanced Golang sdk for polymarket.com
 Fork form github.com/LixvYang/polymarket-sdk-go
 
+Bug fixes with raw repo
+
+
+
