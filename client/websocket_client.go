@@ -1,6 +1,7 @@
 package client
 
 import (
+	"crypto/tls"
 	"encoding/json"
 	"fmt"
 	"log"
@@ -41,7 +42,7 @@ type WebSocketClientOptions struct {
 	// Custom logger (if nil, uses default log.Logger)
 	Logger *log.Logger
 
-	ProxyUrl *string
+	ProxyUrl string
 }
 
 // MessageHandler is a callback function for handling messages
@@ -146,9 +147,15 @@ func (ws *WebSocketClient) Connect() error {
 
 	// Create WebSocket connection
 	fullURL := fmt.Sprintf("%s/ws/market", wsURL)
-	dialer := websocket.Dialer{}
-	if ws.options.ProxyUrl != nil && *ws.options.ProxyUrl != "" {
-		proxyUrl, err := url.Parse(*ws.options.ProxyUrl)
+	tlsConfig := &tls.Config{
+		MinVersion: tls.VersionTLS12,
+		NextProtos: []string{"http/1.1"},
+	}
+	dialer := websocket.Dialer{
+		TLSClientConfig: tlsConfig,
+	}
+	if ws.options.ProxyUrl != "" {
+		proxyUrl, err := url.Parse(ws.options.ProxyUrl)
 		if err != nil {
 			return fmt.Errorf("failed to parse proxy url: %w", err)
 		}
