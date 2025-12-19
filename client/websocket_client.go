@@ -178,7 +178,7 @@ func (ws *WebSocketClient) Connect() error {
 	ws.log("WebSocket connected")
 
 	// Send subscription message
-	if err := ws.sendSubscription(); err != nil {
+	if err = ws.sendInitialSubscription(); err != nil {
 		return fmt.Errorf("failed to send subscription: %w", err)
 	}
 
@@ -216,7 +216,7 @@ func (ws *WebSocketClient) Subscribe(assetIDs []string) error {
 	ws.mu.Unlock()
 
 	if ws.IsConnected() {
-		return ws.sendSubscription()
+		return ws.sendSubscription(assetIDs)
 	}
 
 	return nil
@@ -256,7 +256,7 @@ func (ws *WebSocketClient) Wait() {
 	<-ws.done
 }
 
-func (ws *WebSocketClient) sendSubscription() error {
+func (ws *WebSocketClient) sendInitialSubscription() error {
 	ws.mu.RLock()
 	conn := ws.conn
 	assetIDs := ws.options.AssetIDs
@@ -271,7 +271,25 @@ func (ws *WebSocketClient) sendSubscription() error {
 		"type":       "market",
 	}
 
-	ws.log("Sending subscription:", assetIDs)
+	ws.log("Sending initial subscription:", assetIDs)
+	return conn.WriteJSON(message)
+}
+
+func (ws *WebSocketClient) sendSubscription(tokenIds []string) error {
+	ws.mu.RLock()
+	conn := ws.conn
+	ws.mu.RUnlock()
+
+	if conn == nil {
+		return fmt.Errorf("not connected")
+	}
+
+	message := map[string]interface{}{
+		"assets_ids": tokenIds,
+		"operation":  "subscribe",
+	}
+
+	ws.log("Sending subscription:", tokenIds)
 	return conn.WriteJSON(message)
 }
 
